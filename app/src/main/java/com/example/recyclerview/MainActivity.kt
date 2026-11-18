@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recyclerview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        siapkanData()
+        tambahData()
+        tampilkanData()
     }
 
     private fun siapkanData(){
@@ -50,4 +55,10 @@ class MainActivity : AppCompatActivity() {
             _arWayang.add(wayang)
         }
     }
+
+    private fun tampilkanData() {
+        binding.rvWayang.layoutManager = LinearLayoutManager(this)
+        binding.rvWayang.adapter = AdapterRecView(_arWayang)
+    }
+
 }
