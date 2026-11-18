@@ -13,7 +13,7 @@ class AdapterRecView(private val listWayang: ArrayList<DcWayang>) :
         private lateinit var onItemClickCallback: OnItemClickCallback
 
         interface OnItemClickCallback {
-                fun onItemClickCallback(data: DcWayang)
+                fun onItemClicked(data: DcWayang)
         }
 
         fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
@@ -61,7 +61,7 @@ class AdapterRecView(private val listWayang: ArrayList<DcWayang>) :
                         ).show()
 
                         if (::onItemClickCallback.isInitialized){
-                                onItemClickCallback.onItemClickCallback(wayang)
+                                onItemClickCallback.onItemClicked(wayang)
                         }
                 }
 
