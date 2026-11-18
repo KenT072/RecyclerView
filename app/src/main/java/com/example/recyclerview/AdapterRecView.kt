@@ -10,6 +10,12 @@ import com.example.recyclerview.databinding.ItemRecyclerBinding
 
 class AdapterRecView(private val listWayang: ArrayList<DcWayang>) :
         RecyclerView.Adapter<AdapterRecView.ListViewHolder>() {
+        private lateinit var onItemClickCallback: OnItemClickCallback
+
+        interface OnItemClickCallback {
+                fun onItemClickCallback(data: DcWayang)
+        }
+
         override fun onCreateViewHolder(
                 parent: ViewGroup,
                 viewType: Int
