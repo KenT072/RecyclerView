@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         siapkanData()
         tambahData()
         tampilkanData()
+
+        binding.btnToggleLayout.setOnCheckedChangeListener { _, isChecked ->
+            tampilkanData()
+        }
     }
 
     private fun siapkanData(){
