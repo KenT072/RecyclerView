@@ -5,6 +5,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import coil.load
 import com.example.recyclerview.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -27,5 +29,21 @@ class DetailActivity : AppCompatActivity() {
         val karakter = intent.getStringExtra("karakter")
         val deskripsi = intent.getStringExtra("deskripsi")
         val foto = intent.getStringExtra("foto")
+
+        binding.tvDetailNama.text = nama
+        binding.chipDetailKarakter.text = karakter
+        binding.tvDetailDeskripsi.text = deskripsi
+
+        val circularProgressDrawable = CircularProgressDrawable(this).apply {
+            strokeWidth = 5f
+            centerRadius = 30f
+            start()
+        }
+
+        binding.ivDetailGambar.load(foto) {
+            crossfade(true)
+            placeholder(circularProgressDrawable)
+            error(R.drawable.ic_launcher_background)
+        }
     }
 }
