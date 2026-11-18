@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.recyclerview.databinding.ActivityMainBinding
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.DefaultItemAnimator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -76,6 +77,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         val adapterWayang = AdapterRecView(_arWayang)
+        binding.rvWayang.itemAnimator = DefaultItemAnimator().apply {
+            removeDuration = 400L
+        }
         adapterWayang.setOnItemClickCallback(object : AdapterRecView.OnItemClickCallback {
             override fun onItemClicked(data: DcWayang) {
                 val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
