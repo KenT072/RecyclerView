@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.recyclerview.databinding.ActivityMainBinding
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -83,6 +85,26 @@ class MainActivity : AppCompatActivity() {
                     putExtra("foto", data.foto)
                 }
                 startActivity(intent)
+            }
+            override fun delData(pos: Int) {
+                val item = _arWayang[pos]
+
+                AlertDialog.Builder(this@MainActivity)
+                    .setTitle("Konfirmasi HAPUS DATA")
+                    .setMessage("Apakah benar data ${item.nama} akan dihapus?")
+                    .setPositiveButton("Hapus") { _, _ ->
+                        _arWayang.removeAt(pos)
+                        adapterWayang.notifyItemRemoved(pos)
+                        adapterWayang.notifyItemRangeChanged(pos, _arWayang.size - pos)
+
+                        Toast.makeText(
+                            this@MainActivity,
+                            "${item.nama} berhasil dihapus",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    .setNegativeButton("Batal", null)
+                    .show()
             }
         })
         binding.rvWayang.adapter = adapterWayang
